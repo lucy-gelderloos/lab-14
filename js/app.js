@@ -25,7 +25,8 @@ Cart.prototype.removeItem = function(item) {
   let removeItem
   let items = JSON.parse(localStorage.getItem('items'));
   let removeIndex = items.indexOf(removeItem);
-  items.pop()
+  items.splice(removeIndex,1)
+  localStorage.setItem('items',item);
 };
 
 const CartItem = function(product, quantity) {
