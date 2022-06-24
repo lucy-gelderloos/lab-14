@@ -1,1 +1,142 @@
 /* TODO: Make it awesome */
+
+body {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    width:75%;
+    margin:auto;
+    line-height:1.5em;
+}
+
+h1 {
+    font-size:2em;
+    font-weight:bold;
+    margin:10px auto;
+    text-align:center;
+}
+
+button {
+    background-color: lightskyblue;
+    margin:10px auto;
+    padding:10px;
+    border:none;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color:#28a7f6;
+    cursor: pointer;
+}
+
+header {
+    color:#0f4363;
+    margin:auto;
+}
+
+nav {
+    /* height:2.5em; */
+    align-items: center;
+    margin:auto;
+    background-color:#0f4363;
+    color:white;
+}
+
+nav ul {
+    display:flex;
+}
+
+nav ul li {
+    padding: 10px;
+}
+
+/* nav ul li:hover {
+    background-color: lightskyblue;
+    color:#0f4363;
+} */
+
+li span {
+    display:block;
+    margin-left:-67px;
+}
+
+a:link, a:visited {
+    color:white;
+    text-decoration: none;
+}
+
+.col-2 {
+    display:flex;
+}
+
+footer {
+    font-size:.8em;
+    text-align: center;
+    margin-top:35px;
+}
+
+form {
+    margin: 30px auto;
+    padding: 1em;
+    border: 1px solid #0f4363;
+    border-radius: 1em;
+  }
+
+/* .copy {
+    display:flex;
+}
+
+.catalog {
+    display:flex;
+} */
+
+legend {
+    font-size:1.2em;
+    text-align:center;
+    margin: 0 auto 1em auto;
+    font-weight:600;
+}
+
+label {
+    margin-left:10px;
+}
+
+.catalog-div img {
+    width:150px;
+}
+
+table {
+    border:2px solid #0f4363 ; 
+    border-collapse: collapse;
+    margin:20px auto;
+    min-width:60%;
+}
+
+th {
+    font-weight:bold;
+    padding:4px;
+    min-width:75px;
+    text-align:left;
+    border:2px solid #0f4363;
+    border-collapse:collapse;
+}
+
+td {
+    padding:4px;
+    border-bottom: 1px solid lightskyblue;
+}
+
+.center {
+    text-align:center;
+}
+
+.red:hover {
+    background-color:lightpink;
+}
+
+#cartContents {
+    margin: 30px 10px;
+    padding: 1em;
+    border: 1px solid #0f4363;
+    border-radius: 1em; 
+    min-width: 15%;
+}

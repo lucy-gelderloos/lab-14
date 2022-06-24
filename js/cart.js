@@ -45,11 +45,14 @@ function showCart() {
   // let deleteLink = document.createElement('a');
   deleteCell.id = cart.items[i].product;
   deleteCell.appendChild(document.createTextNode('X'));
+  deleteCell.classList.add('center');
+  deleteCell.classList.add('red')
   deleteCell.addEventListener('click', removeItemFromCart);
   // deleteCell.appendChild(deleteLink);
 
   let qtyCell = document.createElement('td');
   qtyCell.appendChild(document.createTextNode(cart.items[i].quantity));
+  qtyCell.classList.add('center');
 
   let itemCell = document.createElement('td');
   itemCell.appendChild(document.createTextNode(cart.items[i].product));

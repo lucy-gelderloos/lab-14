@@ -49,22 +49,27 @@ function addSelectedItemToCart() {
 // TODO: Update the cart count in the header nav with the number of items in the Cart
 function updateCounter() {
   let itemCount = document.getElementById('itemCount');
+  if(itemCount.firstChild){
+    itemCount.firstChild.remove();
+  }
   let totalItems = 0
   for(let i = 0; i < cart.items.length; i++){
     totalItems += Number(cart.items[i].quantity);
   }
-  itemCount.appendChild(document.createTextNode(`You have ${totalItems} items in your cart`));
+  itemCount.appendChild(document.createTextNode(`Items in cart: ${totalItems}`));
 }
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
   let previewDiv = document.getElementById('cartContents');
+  
   // TODO: Get the item and quantity from the form
   let itemName = document.getElementById('items').value;
   let quantity = document.getElementById('quantity').value;
+  
   // TODO: Add a new element to the cartContents div with that information
   let cartPreview = document.createElement('div')
-  cartPreview.appendChild(document.createTextNode(`${itemName}, ${quantity}`));
+  cartPreview.appendChild(document.createTextNode(`${itemName}: ${quantity}`));
   previewDiv.appendChild(cartPreview);
 
 }
@@ -78,3 +83,26 @@ catalogForm.addEventListener('submit', handleSubmit);
 // Before anything else of value can happen, we need to fill in the select
 // drop down list in the form.
 populateForm();
+
+function renderCatalog() {
+  let catalogDivArr = document.getElementsByClassName('col-2');
+  let catalogDiv = catalogDivArr[0];
+  for (let i in Product.allProducts) {
+    let imageDiv = document.createElement('div');
+    imageDiv.classList.add('catalog-div');
+
+    let image = document.createElement('img');
+    image.src = Product.allProducts[i].filePath;
+
+    let captionEl = document.createElement('p');
+    let caption = document.createTextNode(Product.allProducts[i].name);
+    captionEl.appendChild(caption);
+
+    imageDiv.appendChild(image);
+    imageDiv.appendChild(captionEl);
+
+    catalogDiv.appendChild(imageDiv);
+  }
+}
+
+// renderCatalog();
