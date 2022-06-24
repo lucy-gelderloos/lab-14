@@ -38,13 +38,15 @@ function showCart() {
   
   // TODO: Create a TR
   let cartRow = document.createElement('tr');
+  cartRow.classList.add('cart-row');
   
   // TODO: Create a TD for the delete link, quantity,  and the item
   let deleteCell = document.createElement('td');
-  let deleteLink = document.createElement('a');
-  deleteLink.id = cart.items[i].product;
-  deleteLink.appendChild(document.createTextNode('X'));
-  deleteLink.addEventListener('click', removeItemFromCart);
+  // let deleteLink = document.createElement('a');
+  deleteCell.id = cart.items[i].product;
+  deleteCell.appendChild(document.createTextNode('X'));
+  deleteCell.addEventListener('click', removeItemFromCart);
+  // deleteCell.appendChild(deleteLink);
 
   let qtyCell = document.createElement('td');
   qtyCell.appendChild(document.createTextNode(cart.items[i].quantity));
@@ -62,13 +64,16 @@ function showCart() {
 }
 
 function removeItemFromCart(event) {
+  event.preventDefault();
 
+  let name = event.target.id;
+  cart.removeItem(name);
   // TODO: When a delete link is clicked, use cart.removeItem to remove the correct item
   cart.removeItem()
   // TODO: Save the cart back to local storage
   cart.saveToLocalStorage();
   // TODO: Re-draw the cart table
-  showCart()
+  renderCart()
 
 }
 
