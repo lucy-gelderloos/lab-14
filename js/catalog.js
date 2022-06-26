@@ -3,7 +3,14 @@
 'use strict';
 
 // Set up an empty cart for use on this page.
-const cart = new Cart([]);
+let cart = new Cart([]);
+
+// If the user comes back to the catalog page to the home page, this brings their cart back with them
+if(localStorage.getItem('cart') !== null){
+  cart = new Cart(JSON.parse(localStorage.getItem('cart')));
+  updateCartPreview();
+  updateCounter();
+}
 
 // On screen load, we call this method to put all of the product options
 // (the things in the Product.allProducts array) into the drop down list.
@@ -43,7 +50,6 @@ function addSelectedItemToCart() {
   let quantity = document.getElementById('quantity').value;
   // TODO: using those, add one item to the Cart
   cart.addItem(itemName, quantity);
-  console.log(cart);
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
@@ -54,7 +60,7 @@ function updateCounter() {
   }
   let totalItems = 0
   for(let i = 0; i < cart.items.length; i++){
-    totalItems += Number(cart.items[i].quantity);
+    totalItems += parseInt(cart.items[i].quantity);
   }
   itemCount.appendChild(document.createTextNode(`Items in cart: ${totalItems}`));
 }
@@ -64,14 +70,16 @@ function updateCartPreview() {
   let previewDiv = document.getElementById('cartContents');
   
   // TODO: Get the item and quantity from the form
-  let itemName = document.getElementById('items').value;
-  let quantity = document.getElementById('quantity').value;
-  
-  // TODO: Add a new element to the cartContents div with that information
-  let cartPreview = document.createElement('div')
-  cartPreview.appendChild(document.createTextNode(`${itemName}: ${quantity}`));
-  previewDiv.appendChild(cartPreview);
-
+  // If there are items already in the cart when the page loads, this shows them in the cart 
+  // preview
+  for(let i = 0; i < cart.items.length; i++){
+    let itemName = cart.items[i].product;    
+    let quantity = parseInt(cart.items[i].quantity);
+    // TODO: Add a new element to the cartContents div with that information
+    let cartPreview = document.createElement('p')
+    cartPreview.appendChild(document.createTextNode(`${itemName}: ${quantity}`));
+    previewDiv.appendChild(cartPreview);
+  }
 }
 
 // Set up the "submit" event listener on the form.
@@ -83,26 +91,3 @@ catalogForm.addEventListener('submit', handleSubmit);
 // Before anything else of value can happen, we need to fill in the select
 // drop down list in the form.
 populateForm();
-
-function renderCatalog() {
-  let catalogDivArr = document.getElementsByClassName('col-2');
-  let catalogDiv = catalogDivArr[0];
-  for (let i in Product.allProducts) {
-    let imageDiv = document.createElement('div');
-    imageDiv.classList.add('catalog-div');
-
-    let image = document.createElement('img');
-    image.src = Product.allProducts[i].filePath;
-
-    let captionEl = document.createElement('p');
-    let caption = document.createTextNode(Product.allProducts[i].name);
-    captionEl.appendChild(caption);
-
-    imageDiv.appendChild(image);
-    imageDiv.appendChild(captionEl);
-
-    catalogDiv.appendChild(imageDiv);
-  }
-}
-
-// renderCatalog();
