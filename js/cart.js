@@ -3,7 +3,6 @@
 
 // Create an event listener so that when the delete link is clicked, the removeItemFromCart method is invoked.
 const table = document.getElementById('cart');
-// table.addEventListener('click', removeItemFromCart);
 
 let cart;
 
@@ -42,13 +41,11 @@ function showCart() {
   
   // TODO: Create a TD for the delete link, quantity,  and the item
   let deleteCell = document.createElement('td');
-  // let deleteLink = document.createElement('a');
   deleteCell.id = cart.items[i].product;
   deleteCell.appendChild(document.createTextNode('X'));
   deleteCell.classList.add('center');
   deleteCell.classList.add('red')
   deleteCell.addEventListener('click', removeItemFromCart);
-  // deleteCell.appendChild(deleteLink);
 
   let qtyCell = document.createElement('td');
   qtyCell.appendChild(document.createTextNode(cart.items[i].quantity));
